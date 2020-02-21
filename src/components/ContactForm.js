@@ -11,7 +11,7 @@ const ContactForm = () => {
     };
 
     return (
-        <div className="App">
+        <div className="ContactForm">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor="firstName">First Name*</label>
@@ -50,7 +50,7 @@ const ContactForm = () => {
                     >
                         Email*
                     </label>
-                    <input name="email" ref={register({ required: true })} />
+                    <input name="email" type="email" ref={register({ required: true })} />
                     {errors.email && (
                         <p>
                             Looks like there was an error: {errors.email.type}
