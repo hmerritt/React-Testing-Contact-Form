@@ -69,7 +69,7 @@ const ContactForm = () => {
                         {JSON.stringify(data, null, 2)}
                     </pre>
                 )}
-                <input type="submit" />
+                <input type="submit" title="submit" />
             </form>
         </div>
     );

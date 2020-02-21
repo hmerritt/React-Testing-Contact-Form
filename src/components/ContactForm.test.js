@@ -7,7 +7,7 @@ test("renders ContactForm without crashing", () => {
     render(<ContactForm />);
 });
 
-test("render all input labels", () => {
+test("renders all input labels", () => {
     const { getByText } = render(<ContactForm />);
 
     getByText(/First Name\*/i);
@@ -16,11 +16,17 @@ test("render all input labels", () => {
     getByText(/Message/i);
 });
 
+test("renders submit button", () => {
+    const { getByTitle } = render(<ContactForm />);
+
+    getByTitle(/submit/i);
+});
+
 // test("Error messages show up for 'required' inputs", () => {
-//     // const { getByText, getByDisplayValue } = render(<App />);
-//     // fireEvent.click(getByDisplayValue(/submit/i));
+//      const { getByText, getByDisplayValue } = render(<App />);
+//      fireEvent.click(getByDisplayValue(/submit/i));
 //     //
-//     // getByText(/Looks like there was an error: required/i);
+//      getByText(/Looks like there was an error: required/i);
 //
 //     console.log(render(<ContactForm />));
-// })
+// });
