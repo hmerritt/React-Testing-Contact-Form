@@ -1,6 +1,6 @@
 import React from "react";
 import "mutationobserver-shim";
-import { render, fireEvent } from "@testing-library/react";
+import { render, act, fireEvent, waitForElement, waitForDomChange } from "@testing-library/react";
 import ContactForm from "./ContactForm";
 
 test("renders ContactForm without crashing", () => {
@@ -22,11 +22,14 @@ test("renders submit button", () => {
     getByTitle(/submit/i);
 });
 
-// test("Error messages show up for 'required' inputs", () => {
-//      const { getByText, getByDisplayValue } = render(<App />);
-//      fireEvent.click(getByDisplayValue(/submit/i));
-//     //
-//      getByText(/Looks like there was an error: required/i);
-//
-//     console.log(render(<ContactForm />));
-// });
+test("Displays error messages for 'required' inputs", async () => {
+    const { getAllByText, getByTitle } = render(<ContactForm />);
+
+    act(() => {
+        fireEvent.click(getByTitle(/submit/i));
+    });
+
+    await waitForDomChange(() => {
+        getAllByText(/Looks like there was an error/i);
+    });
+});
